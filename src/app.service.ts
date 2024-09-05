@@ -26,4 +26,20 @@ export class BooksService {
 
     return newBook;
   }
+
+  update(id: number, updatedBook: Partial<Book>): Book | undefined {
+    const currentBook = books.find((book) => book.id === id);
+
+    const newBook = {
+      id: id,
+      title: updatedBook.title ?? currentBook.title,
+      author: updatedBook.author ?? currentBook.author,
+      publicationYear:
+        updatedBook.publicationYear ?? currentBook.publicationYear,
+    };
+
+    books[id - 1] = newBook;
+
+    return newBook;
+  }
 }
