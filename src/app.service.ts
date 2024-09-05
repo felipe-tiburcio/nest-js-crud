@@ -38,8 +38,16 @@ export class BooksService {
         updatedBook.publicationYear ?? currentBook.publicationYear,
     };
 
-    books[id - 1] = newBook;
+    books[books.indexOf(currentBook)] = newBook;
 
     return newBook;
+  }
+
+  delete(id: number): Book[] | undefined {
+    const book = books.find((book) => book.id === id);
+
+    books.splice(books.indexOf(book), 1);
+
+    return books;
   }
 }
